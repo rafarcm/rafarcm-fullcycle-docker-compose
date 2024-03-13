@@ -2,6 +2,10 @@ FROM node:15
 
 WORKDIR /usr/src/app
 
+COPY package*.json ./
+
+RUN npm install
+
 COPY . .
 
 ENV DOCKERIZE_VERSION v0.7.0
