@@ -28,7 +28,7 @@ app.get('/', async (req,res) => {
 
     connection.query(sqlInsert);
 
-    let retorno = '<h1>Full Cycle Rocks teste!</h1>';
+    let retorno = '<h1>Full Cycle Rocks!</h1>';
 
     try {
         const peoples = await consultarPeoples();

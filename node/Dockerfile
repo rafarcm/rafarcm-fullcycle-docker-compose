@@ -1,10 +1,16 @@
-FROM node:15
+FROM node:15 AS builder
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
 RUN npm install
+
+FROM node:15 AS runner
+
+WORKDIR /usr/src/app
+
+COPY --from=builder /usr/src/app/node_modules ./node_modules
 
 COPY . .
 
@@ -14,4 +20,3 @@ RUN wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_
     && apt-get autoremove -yqq --purge wget && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 3000
-
